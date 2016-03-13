@@ -12,10 +12,10 @@ env:
 install:
   - sudo apt-add-repository -y ppa:marutter/rdev
   - sudo apt-get update
-  - wget https://download1.rstudio.org/rstudio-0.99.892-amd64-debian.tar.gz -O rstudio.tar.gz
-  - tar -zxvf rstudio.tar.gz
-  - sudo cp rstudio/bin/pandoc/pandoc /usr/local/bin/pandoc
-  - sudo cp rstudio/bin/pandoc/pandoc-citeproc /usr/local/bin/pandoc-citeproc
+  - curl -L -O https://download1.rstudio.org/rstudio-0.99.892-amd64-debian.tar.gz
+  - tar -zxvf rstudio-0.99.892-amd64-debian.tar.gz
+  - sudo cp rstudio-0.99.892/bin/pandoc/pandoc /usr/local/bin/pandoc
+  - sudo cp rstudio-0.99.892/bin/pandoc/pandoc-citeproc /usr/local/bin/pandoc-citeproc
   - which pandoc
   - which pandoc-citeproc
   - pandoc --version
