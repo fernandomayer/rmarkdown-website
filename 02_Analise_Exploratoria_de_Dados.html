@@ -269,7 +269,7 @@ div.tocify {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">CE001</a>
+      <a class="navbar-brand" href="index.html">CE001</a>
       <!-- <a class="navbar-brand" href="#"> -->
       <!--   <img alt="LEG" src="img/leg.png"> -->
       <!-- </a> -->
@@ -396,6 +396,10 @@ div.tocify {
 <h1>Introdução</h1>
 <p>Nesta sessão vamos ver alguns (mas não todos!) métodos para fazer uma análise exploratória descritiva de um conjunto de dados.</p>
 <p>Uma boa forma de iniciar uma análise descritiva adequada é verificar os tipos de de variáveis disponíveis.</p>
+<p>Uma equação:</p>
+<p><span class="math display">\[
+P[Y = y] = \frac{e^{-\lambda} \lambda^y}{y!}
+\]</span></p>
 <div id="variaveis" class="section level2">
 <h2>Variáveis</h2>
 <p>Quando fazemos uma <strong>amostragem</strong>, coletamos não apenas a informação sobre a característica de interesse, mas <em>diversas outras informações</em> que auxiliarão no entendimento desta característica.</p>
@@ -928,12 +932,12 @@ civil.tb</code></pre>
 <pre class="r"><code>par(mfrow = c(1, 2))
 barplot(civil.tb, ylab = &quot;Frequência absoluta&quot;)
 barplot(prop.table(civil.tb), ylab = &quot;Frequência relativa&quot;,
-        ylim = c(0, .6))</code></pre>
-<p><img src="02_Analise_Exploratoria_de_Dados_files/figure-html/unnamed-chunk-7-1.png" title="" alt="" width="800" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>par(mfrow = c(1,1))</code></pre>
+        ylim = c(0, .6))
+par(mfrow = c(1,1))</code></pre>
+<p><img src="figures/bar-quali-nom-1.png" title="" alt="" width="800" style="display: block; margin: auto;" /></p>
 <p>O <strong>gráfico de setores</strong> (ou de pizza, ou torta, ou diagrama circular) também pode ser utilizado, mas apresenta uma maior limitação. Independente da frequência utilizada, cada setor terá a mesma área. Além disso, quando existem muitas categorias, e/ou as categorias possuem frequências semelhantes, a diferenciação dos setores é dificultada.</p>
 <pre class="r"><code>pie(civil.tb)</code></pre>
-<p><img src="02_Analise_Exploratoria_de_Dados_files/figure-html/unnamed-chunk-8-1.png" title="" alt="" width="800" style="display: block; margin: auto;" /></p>
+<p><img src="figures/pie-quali-nom-1.png" title="" alt="" width="800" style="display: block; margin: auto;" /></p>
 <p>A <strong>moda</strong> de qualquer variável é definida como o valor mais frequente encontrado na amostra. No caso de variáveis qualitativas, a moda é a categoria que apresenta maior frequência. Nesse exemplo, a moda seria então</p>
 <pre class="r"><code>names(civil.tb)[which.max(civil.tb)]</code></pre>
 <pre><code>[1] &quot;casado&quot;</code></pre>
@@ -954,15 +958,15 @@ addmargins(inst.tb)</code></pre>
 0.3333333 0.5000000 0.1666667 1.0000000 </code></pre>
 <p>O gráfico de setores não é adequado para este tipo de variável por não expressar a ordem dos possíveis valores. Usamos então apenas um gráfico de barras conforme mostrado abaixo</p>
 <pre class="r"><code>barplot(inst.tb)</code></pre>
-<p><img src="02_Analise_Exploratoria_de_Dados_files/figure-html/unnamed-chunk-12-1.png" title="" alt="" width="800" style="display: block; margin: auto;" /></p>
+<p><img src="figures/bar-quali-ord1-1.png" title="" alt="" width="800" style="display: block; margin: auto;" /></p>
 <p>Em alguns casos podemos querer mostrar o gráfico de barras com as barras classificadas da menor para a maior, ou vice-versa, independente da ordem dos níveis. O importante é sempre deixar claro as categorias de cada barra.</p>
 <pre class="r"><code>par(mfrow = c(1,2))
 ## Menor para maior
 barplot(sort(inst.tb))
 ## Maior para menor
-barplot(sort(inst.tb, decreasing = TRUE))</code></pre>
-<p><img src="02_Analise_Exploratoria_de_Dados_files/figure-html/unnamed-chunk-13-1.png" title="" alt="" width="800" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>par(mfrow = c(1,1))</code></pre>
+barplot(sort(inst.tb, decreasing = TRUE))
+par(mfrow = c(1,1))</code></pre>
+<p><img src="figures/bar-quali-ord2-1.png" title="" alt="" width="800" style="display: block; margin: auto;" /></p>
 <p>Para uma variável ordinal, a moda também é especificada como a categoria de maior frequência, ou seja,</p>
 <pre class="r"><code>names(inst.tb)[which.max(inst.tb)]</code></pre>
 <pre><code>[1] &quot;2o Grau&quot;</code></pre>
@@ -991,13 +995,15 @@ filhos.tb  4 5  7  3  1
 filhos.tba 4 9 16 19 20</code></pre>
 <p>O gráfico adequado para frequências absolutas, relativas, ou acumuladas de uma variável discreta é parecido com um gráfico de barras, mas nesse caso, as frequências são indicadas por linhas.</p>
 <pre class="r"><code>plot(filhos.tb)</code></pre>
-<p><img src="02_Analise_Exploratoria_de_Dados_files/figure-html/unnamed-chunk-18-1.png" title="" alt="" width="800" style="display: block; margin: auto;" /></p>
+<p><img src="figures/plot-quanti-discr1-1.png" title="" alt="" width="800" style="display: block; margin: auto;" /></p>
 <p>Outra possibilidade seria fazer gráficos de frequências absoluta e de frequências acumuladas conforme mostrado na</p>
-<pre class="r"><code>## Frequência relativa
+<pre class="r"><code>par(mfrow = c(1,2))
+## Frequência relativa
 plot(filhos.tb)
 ## Frequência relativa acumulada
-plot(filhos.tba, type = &quot;S&quot;) # tipo step (escada)</code></pre>
-<p><img src="02_Analise_Exploratoria_de_Dados_files/figure-html/unnamed-chunk-19-1.png" title="" alt="" width="800" style="display: block; margin: auto;" /></p>
+plot(filhos.tba, type = &quot;S&quot;) # tipo step (escada)
+par(mfrow = c(1,1))</code></pre>
+<p><img src="figures/plot-quanti-discr2-1.png" title="" alt="" width="800" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 

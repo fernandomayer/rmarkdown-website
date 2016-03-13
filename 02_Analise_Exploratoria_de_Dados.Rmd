@@ -4,19 +4,8 @@ author: "Fernando de Pol Mayer (LEG/UFPR)"
 output: html_document
 ---
 
-```{r setup, include=FALSE, purl=FALSE, eval=TRUE}
-opts_chunk$set(
-    ## knitr options
-    cache = TRUE,
-    tidy = FALSE,
-    comment = NA,
-    fig.width = 10,
-    fig.height = 8,
-    fig.align = "center",
-    dpi = 80, ## aumentar o dpi para exibir maior.
-    dev = "png"
-    # fig.path = "figures/",
-    )
+```{r setup, include=FALSE}
+source("knitr_setup.R")
 ```
 
 # Introdução
@@ -26,6 +15,12 @@ uma análise exploratória descritiva de um conjunto de dados.
 
 Uma boa forma de iniciar uma análise descritiva adequada é verificar os
 tipos de de variáveis disponíveis.
+
+Uma equação:
+
+$$
+P[Y = y] = \frac{e^{-\lambda} \lambda^y}{y!}
+$$
 
 ## Variáveis
 
@@ -233,7 +228,7 @@ variável. O **gráfico de barras** é formado pelas categorias no eixo X,
 e pela frequência no eixo Y. A frequência utilizada pode ser tanto a
 absoluta quanto a relativa, conforme for o caso.
 
-```{r}
+```{r bar-quali-nom, fig.show='hold'}
 par(mfrow = c(1, 2))
 barplot(civil.tb, ylab = "Frequência absoluta")
 barplot(prop.table(civil.tb), ylab = "Frequência relativa",
@@ -247,7 +242,7 @@ Independente da frequência utilizada, cada setor terá a mesma área. Além
 disso, quando existem muitas categorias, e/ou as categorias possuem
 frequências semelhantes, a diferenciação dos setores é dificultada.
 
-```{r}
+```{r pie-quali-nom}
 pie(civil.tb)
 ```
 
@@ -289,7 +284,7 @@ O gráfico de setores não é adequado para este tipo de variável por não
 expressar a ordem dos possíveis valores. Usamos então apenas um gráfico
 de barras conforme mostrado abaixo
 
-```{r}
+```{r bar-quali-ord1}
 barplot(inst.tb)
 ```
 
@@ -298,7 +293,7 @@ classificadas da menor para a maior, ou vice-versa, independente da
 ordem dos níveis. O importante é sempre deixar claro as categorias de
 cada barra.
 
-```{r}
+```{r bar-quali-ord2, fig.show='hold'}
 par(mfrow = c(1,2))
 ## Menor para maior
 barplot(sort(inst.tb))
@@ -368,14 +363,14 @@ O gráfico adequado para frequências absolutas, relativas, ou acumuladas
 de uma variável discreta é parecido com um gráfico de barras, mas nesse
 caso, as frequências são indicadas por linhas.
 
-```{r}
+```{r plot-quanti-discr1}
 plot(filhos.tb)
 ```
 
 Outra possibilidade seria fazer gráficos de frequências absoluta e de
 frequências acumuladas conforme mostrado na
 
-```{r, echo=2:5}
+```{r plot-quanti-discr2, fig.show='hold'}
 par(mfrow = c(1,2))
 ## Frequência relativa
 plot(filhos.tb)
