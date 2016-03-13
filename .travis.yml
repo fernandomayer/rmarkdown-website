@@ -13,11 +13,13 @@ install:
   - sudo apt-add-repository -y ppa:marutter/rdev
   - sudo apt-get update
   - sudo apt-get install pandoc
+  - which pandoc
+  - pandoc --version
   - sudo apt-get install r-base
   - "[ ! -d ~/R ] && mkdir ~/R"
   - R --version
   - Rscript -e '.libPaths(); sessionInfo()'
-  - Rscript -e 'install.packages(c("rmarkdown", "devtools"), type = "source", dep = TRUE, repos = "http://cran-r.c3sl.ufpr.br/")'
+  - Rscript -e 'install.packages(c("rmarkdown", "devtools"), type = "source", repos = "http://cran-r.c3sl.ufpr.br/")'
   - Rscript -e 'devtools::install_github("yihui/knitr")'
 
 # build site
