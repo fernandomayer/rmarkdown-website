@@ -6,9 +6,8 @@ all: clean html
 html: $(HTML_FILES)
 
 %.html: %.Rmd
-	R --slave -e "set.seed(100);rmarkdown::render('$<')"
+	R --slave -e "library(knitr);set.seed(100);rmarkdown::render('$<')"
 
 .PHONY: clean
 clean:
 	$(RM) $(HTML_FILES)
-
