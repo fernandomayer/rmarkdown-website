@@ -1,3 +1,9 @@
+# whitelist
+branches:
+  only:
+    - master
+    - gh-pages
+
 # environment variables
 env:
   - R_LIBS_USER=~/R
