@@ -1,5 +1,5 @@
 html_document:
-  self_contained: true
+  self_contained: false
   lib_dir: libs
   theme: flatly
   highlight: default
