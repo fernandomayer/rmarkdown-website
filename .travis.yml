@@ -27,5 +27,9 @@ install:
   - Rscript -e 'devtools::install_github("yihui/knitr")'
 
 # build site
+
+before_script:
+  - rm -rf figures
+
 script:
   - make

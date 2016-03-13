@@ -3,5 +3,4 @@
 .RData
 .Ruserdata
 Rplots.pdf
-*_cache/
-## *_files/
+cache/
